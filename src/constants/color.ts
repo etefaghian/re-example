@@ -1,0 +1,1 @@
+export const bgPrimaryColor = 0x000;
