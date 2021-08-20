@@ -17,7 +17,6 @@ const obj = [
       {
         name: "sub1",
         href: "#",
-
         subItems: [
           { name: "menu1", href: "#" },
           { name: "me2", href: "#" },

@@ -8,12 +8,12 @@ interface IProps {
 const StyledNavbarSubMenu = styled.ul`
   background-color: black;
   list-style-type: none;
-  border: 3px solid blue;
   position: absolute;
-  min-width: 100%;
-  padding: 1rem;
+  width: calc(100% + 3rem);
   border-radius: 1rem;
   top: 6rem;
+  left: 0;
+  padding: 1rem 0;
 `;
 
 const onClickHandler = () => {};
