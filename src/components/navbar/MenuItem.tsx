@@ -62,10 +62,13 @@ export const MenuItem = ({ name, href, subItems }: IProps) => {
   const theme = useTheme();
 
   return (
-    <StyledMenuItem subItems={subItems} myTheme={theme}>
-      <Item href={href} onClick={() => toggleSubMenu(setShowSubMenu)}>
-        {name}
-      </Item>
+    <StyledMenuItem
+      onMouseEnter={() => toggleSubMenu(setShowSubMenu)}
+      onMouseLeave={() => toggleSubMenu(setShowSubMenu)}
+      subItems={subItems}
+      myTheme={theme}
+    >
+      <Item href={href}>{name}</Item>
       {subItems && showSubMenu && (
         <NavbarSubMenu subItems={subItems!}></NavbarSubMenu>
       )}

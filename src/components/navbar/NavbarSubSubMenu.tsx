@@ -12,7 +12,7 @@ const StyledNavbarSubSubMenu = styled.ul<ThemePropsType>`
   width: 100%;
   border-radius: 1rem;
   top: 0;
-  left: calc(100% + 1rem);
+  left: calc(100% + 0.2rem);
   padding: 1rem 0;
 `;
 
