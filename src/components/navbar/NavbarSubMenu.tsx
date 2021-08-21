@@ -1,26 +1,27 @@
 import styled from "styled-components";
+import { ThemePropsType, useTheme } from "../../context/theme";
 import { SubMenuItem } from "./SubMenuItem";
 
 interface IProps {
   subItems: { name: string; href?: string }[];
 }
 
-const StyledNavbarSubMenu = styled.ul`
-  background-color: black;
+const StyledNavbarSubMenu = styled.ul<ThemePropsType>`
+  background-color: ${({ myTheme }) => myTheme.bgSecondaryColor};
+  box-shadow: 0 0.1rem 3rem ${({ myTheme }) => myTheme.bgPrimaryColor};
   list-style-type: none;
   position: absolute;
-  width: calc(100% + 3rem);
+  width: 100%;
   border-radius: 1rem;
   top: 6rem;
   left: 0;
   padding: 1rem 0;
 `;
 
-const onClickHandler = () => {};
-
 export const NavbarSubMenu = ({ subItems }: IProps) => {
+  const myTheme = useTheme();
   return (
-    <StyledNavbarSubMenu>
+    <StyledNavbarSubMenu myTheme={myTheme}>
       {subItems.map((item) => (
         <SubMenuItem {...item}></SubMenuItem>
       ))}

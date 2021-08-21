@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { ThemePropsType, useTheme } from "../../context/theme";
 import { NavbarSubMenu } from "./NavbarSubMenu";
 
 export {};
@@ -10,8 +11,7 @@ interface IProps {
   subItems?: { name: string; href?: string }[];
 }
 
-const StyledMenuItem = styled.li<Partial<IProps>>`
-  height: 100%;
+const StyledMenuItem = styled.li<Partial<IProps> & ThemePropsType>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,27 +23,35 @@ const StyledMenuItem = styled.li<Partial<IProps>>`
   position: relative;
 
   :hover {
-    background-color: black;
+    background-color: ${(props) => props.myTheme.primaryColor};
     color: white;
-    border-radius: 1rem;
+
+    ::after {
+      border-color: ${(props) => props.myTheme.blackColor};
+    }
   }
 
   ::after {
-    background-color: hotpink;
+    border: solid ${(props) => props.myTheme.primaryColor};
+
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
     position: absolute;
     top: 3.5rem;
     font-size: 1rem;
     display: ${(props) => (props.subItems ? "block" : "none")};
-    width: 2rem;
-    height: 2rem;
-    content: "llll";
-    clip-path: circle(0.7rem at 50% 50%);
+    width: 0.8rem;
+    height: 0.8rem;
+    content: "";
+    overflow: hidden;
   }
 `;
 
 const Item = styled.a`
   text-decoration: none;
   color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
 `;
 
 const toggleSubMenu = (setState: Function) =>
@@ -51,9 +59,10 @@ const toggleSubMenu = (setState: Function) =>
 
 export const MenuItem = ({ name, href, subItems }: IProps) => {
   const [showSubMenu, setShowSubMenu] = useState(false);
+  const theme = useTheme();
 
   return (
-    <StyledMenuItem subItems={subItems}>
+    <StyledMenuItem subItems={subItems} myTheme={theme}>
       <Item href={href} onClick={() => toggleSubMenu(setShowSubMenu)}>
         {name}
       </Item>

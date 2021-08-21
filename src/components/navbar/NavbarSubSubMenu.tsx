@@ -1,19 +1,19 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { ThemePropsType, useTheme } from "../../context/theme";
 import { SubSubMenuItem } from "./SubSubMenuItem";
 
 export {};
 
-const StyledNavbarSubSubMenu = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background-color: black;
-  border-radius: 1rem;
+const StyledNavbarSubSubMenu = styled.ul<ThemePropsType>`
+  background-color: ${({ myTheme }) => myTheme.primaryColor};
+  border: 2px solid ${({ myTheme }) => myTheme.blackColor};
+  list-style-type: none;
   position: absolute;
+  width: 100%;
+  border-radius: 1rem;
   top: 0;
   left: calc(100% + 1rem);
+  padding: 1rem 0;
 `;
 
 interface IProps {
@@ -21,10 +21,10 @@ interface IProps {
 }
 
 export const NavbarSubSubMenu = ({ subItems }: IProps) => {
-  const [showSubMenu] = useState(false);
+  const myTheme = useTheme();
 
   return (
-    <StyledNavbarSubSubMenu>
+    <StyledNavbarSubSubMenu myTheme={myTheme}>
       {subItems.map((item) => (
         <SubSubMenuItem {...item}></SubSubMenuItem>
       ))}

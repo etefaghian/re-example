@@ -4,9 +4,9 @@ import { ThemeProvider } from "./context/theme";
 
 function App() {
   return (
-    <ThemeProvider theme="light">
+    <ThemeProvider theme="default">
       <Container>
-        <Navbar></Navbar>
+        <Navbar />
       </Container>
     </ThemeProvider>
   );
